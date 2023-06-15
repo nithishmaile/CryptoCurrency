@@ -1,0 +1,26 @@
+/* Write your CSS code here */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #092e33;
+}
+.coin-type-heading {
+  color: white;
+  font-family: 'Roboto';
+  font-size: 20px;
+  margin: 25px;
+}
+.currency-type-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.currency-type-heading {
+  margin-left: 40px;
+}
+.currency-container {
+  border: 3px solid #00e7ff;
+  border-radius: 5px;
+  width: 70%;
+}
