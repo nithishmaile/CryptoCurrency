@@ -2,21 +2,28 @@
 
 import './index.css'
 
-const CryptoCurrencyItem = props => {
-  const {currencyDataList} = props
+const CryptocurrencyItem = props => {
+  const {cryptocurrencyDetails} = props
 
-  const {usdValue, euroValue, currencyLogo, currencyName} = currencyDataList
-
-  console.log(currencyDataList)
+  const {
+    usdValue,
+    euroValue,
+    currencyLogo,
+    currencyName,
+  } = cryptocurrencyDetails
 
   return (
-    <div>
-      <h1>{usdValue}</h1>
-      <h1>{euroValue}</h1>
-      <h1>{currencyName}</h1>
-      <h1>{currencyLogo}</h1>
-    </div>
+    <li className="cryptocurrency-item">
+      <div className="logo-and-title-container">
+        <img src={currencyLogo} alt={currencyName} className="currency-logo" />
+        <p className="currency-name">{currencyName}</p>
+      </div>
+      <div className="usd-and-euro-values-container">
+        <p className="currency-value">{usdValue}</p>
+        <p className="currency-value">{euroValue}</p>
+      </div>
+    </li>
   )
 }
 
-export default CryptoCurrencyItem
+export default CryptocurrencyItem

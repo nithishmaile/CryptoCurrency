@@ -1,10 +1,22 @@
 /* Write your CSS here */
-.bg-container {
+.app-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #000000;
   min-height: 100vh;
-  padding: 40px;
+  font-family: 'Roboto';
+}
+.error-message {
+  text-align: center;
+  color: #00e7ff;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 4px;
+}
+
+@media (min-width: 576px) {
+  .error-message {
+    font-size: 48px;
+  }
 }

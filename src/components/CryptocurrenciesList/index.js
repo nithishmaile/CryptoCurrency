@@ -1,53 +1,49 @@
 // Write your JS code here
 import {Component} from 'react'
 
-import CryptoCurrencyItem from '../CryptocurrencyItem'
+import CryptocurrencyItem from '../CryptocurrencyItem'
 
-class CryptocurrenciesList extends Component() {
-  state = {currencyData: []}
+import './index.css'
 
-  componentDidMount = () => {
-    this.getCurrencyDetails()
-  }
+class CryptocurrenciesList extends Component {
+  renderCryptocurrenciesHeader = () => (
+    <div className="list-header">
+      <p className="list-coin-type-heading">Coin Type</p>
+      <div className="usd-and-euro-values-container">
+        <p className="list-coin-value-heading">USD</p>
+        <p className="list-coin-value-heading">EURO</p>
+      </div>
+    </div>
+  )
 
-  getCurrencyDetails = async () => {
-    const response = await fetch(
-      'https://apis.ccbp.in/crypto-currency-converter',
+  renderCryptocurrenciesView = () => {
+    const {cryptocurrenciesData} = this.props
+
+    return (
+      <div className="cryptocurrencies-list-container">
+        {this.renderCryptocurrenciesHeader()}
+        <ul className="cryptocurrencies-list">
+          {cryptocurrenciesData.map(eachCryptocurrency => (
+            <CryptocurrencyItem
+              key={eachCryptocurrency.id}
+              cryptocurrencyDetails={eachCryptocurrency}
+            />
+          ))}
+        </ul>
+      </div>
     )
-    const data = await response.json()
-    const convertToSnakeToCamel = data.map(eachObj => ({
-      id: eachObj.id,
-      usdValue: eachObj.usd_value,
-      currencyName: eachObj.currency_name,
-      currencyLogo: eachObj.currency_logo,
-      euroValue: eachObj.euro_value,
-    }))
-    this.setState({currencyData: convertToSnakeToCamel})
   }
 
   render() {
-    const {currencyData} = this.state
-
     return (
-      <div>
+      <div className="cryptocurrencies-container">
+        <h1 className="heading">Cryptocurrency Tracker</h1>
         <img
           src="https://assets.ccbp.in/frontend/react-js/cryptocurrency-bg.png"
           alt="cryptocurrency"
+          className="cryptocurrency-img"
         />
-        <div className="currency-container">
-          <nav className="nav-container">
-            <h1 className="coin-type-heading">Coin Type</h1>
-            <div className="currency-type-container">
-              <h1 className="coin-type-heading currency-type-heading">USD</h1>
-              <h1 className="coin-type-heading currency-type-heading">EURO</h1>
-            </div>
-          </nav>
-          <ul>
-            {currencyData.map(eachObj => (
-              <CryptoCurrencyItem currencyDataList={eachObj} key={eachObj.id} />
-            ))}
-          </ul>
-        </div>
+        {this.renderCryptocurrenciesView()}
       </div>
     )
   }
